@@ -27,22 +27,22 @@ public class Sort {
 
     public static String SortByPython(String json){
         String s = null;
-        writeUsingFileWriter("json_file.json", json);
+        writeUsingFileWriter("{path}/json_file.json", json);
         try {
-            Process p = Runtime.getRuntime().exec("python sort.py");
+            Process p = Runtime.getRuntime().exec("python2 sort.py");
 
             BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
             BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
 
             // read the output from the command
-            System.out.println("Here is the standard output of the command:\n");
+            System.out.println("Successfully completed the JSON Sorting By Python Function:\n");
             while ((s = stdInput.readLine()) != null) {
                 return s;
             }
 
             // read any errors from the attempted command
-            System.out.println("Here is the standard error of the command (if any):\n");
+            System.out.println("Error of the command [JSON Sorting By Python Function]:\n");
             while ((s = stdError.readLine()) != null) {
                 System.out.println(s);
             }
@@ -50,7 +50,7 @@ public class Sort {
             System.exit(0);
         }
         catch (IOException e) {
-            System.out.println("exception happened - here's what I know: ");
+            System.out.println("Exception happened in the JSON Sorting By Python Function - here's what I know: \n");
             e.printStackTrace();
             System.exit(-1);
         }
